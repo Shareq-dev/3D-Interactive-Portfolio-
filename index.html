@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Syed Roshan Shareq | Interactive Portfolio</title>
+  <meta name="description" content="3D interactive portfolio by Syed Roshan Shareq featuring interactive web experiences, projects, resume highlights, and frontend-focused development work." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="Syed Roshan Shareq" />
+  <meta name="theme-color" content="#030812" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="keywords" content="Syed Roshan Shareq, portfolio, 3D portfolio, interactive portfolio, frontend developer, Three.js, GSAP, web developer, Hyderabad" />
+  <link rel="canonical" href="https://roshanshareq.online/" />
+  <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+  <link rel="shortcut icon" href="./favicon.ico" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Syed Roshan Shareq | Interactive Portfolio" />
+  <meta property="og:description" content="Explore an interactive 3D portfolio showcasing frontend work, experiments, projects, and resume highlights." />
+  <meta property="og:url" content="https://roshanshareq.online/" />
+  <meta property="og:site_name" content="Syed Roshan Shareq Portfolio" />
+  <meta property="og:locale" content="en_IN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Syed Roshan Shareq | Interactive Portfolio" />
+  <meta name="twitter:description" content="Interactive 3D portfolio built with Three.js and GSAP, featuring resume, projects, and engaging web experiences." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Syed Roshan Shareq",
+        "url": "https://roshanshareq.online/",
+        "email": "mailto:syedroshanshareq@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Hyderabad",
+          "addressCountry": "IN"
+        },
+        "jobTitle": "Frontend Developer",
+        "knowsAbout": ["HTML", "CSS", "JavaScript", "Three.js", "GSAP", "Interactive Web Development"]
+      },
+      {
+        "@type": "WebSite",
+        "name": "Syed Roshan Shareq Portfolio",
+        "url": "https://roshanshareq.online/",
+        "description": "Interactive 3D portfolio showcasing projects, resume details, and frontend development work."
+      },
+      {
+        "@type": "WebPage",
+        "name": "Syed Roshan Shareq | Interactive Portfolio",
+        "url": "https://roshanshareq.online/",
+        "description": "Immersive 3D portfolio with resume highlights, interactive objects, mini-games, and project showcases.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Syed Roshan Shareq Portfolio",
+          "url": "https://roshanshareq.online/"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<form name="portfolio-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden action="/">
+      <input type="hidden" name="form-name" value="portfolio-feedback" />
+      <input type="text" name="name" />
+      <textarea name="message"></textarea>
+      <input type="text" name="page" />
+      <input type="text" name="createdAt" />
+      <input type="text" name="bot-field" />
+    </form>
+
+  <div id="app">
+    <canvas class="webgl" aria-label="Interactive 3D portfolio scene"></canvas>
+    <div class="noise"></div>
+    <div class="vignette"></div>
+    <div class="globe-screen-blur" id="globeScreenBlur"></div>
+    <div class="scanline"></div>
+
+    <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Building portfolio">
+      <div class="loader-box minimal-loader-box">
+        <div class="morph-loader" aria-hidden="true">
+          <span class="morph-loader-core"></span>
+        </div>
+        <div class="loader-copy">
+          <strong>Building Portfolio</strong>
+        </div>
+      </div>
+    </div>
+    <div class="error-box" id="errorBox">
+      <div>
+        <h2>3D libraries did not load</h2>
+        <p>Please make sure your device has internet access because this file loads Three.js and GSAP from CDN. Then refresh the page.</p>
+      </div>
+    </div>
+
+    <section class="screen" id="introScreen" aria-label="Portfolio intro">
+      <div class="intro-card">
+        <div class="intro-content">
+          <div class="eyebrow"><span class="dot"></span> Welcome to Interactive Portfolio</div>
+          <div class="intro-mobile-roleline" aria-label="Profile summary">
+            <span>Frontend Developer</span>
+            <span>Hyderabad, India</span>
+          </div>
+          <h1 class="intro-title">Hi, I am <span>Syed Roshan Shareq</span></h1>
+          <p class="intro-subtitle">
+            <span class="copy-desktop">This isn't a typical portfolio, it's built to be experienced. The project is evolving, with more interactive elements planned ahead. Designed and developed independently. If you encounter any issues, feel free to report them via email. For the best experience, view it on desktop.</span>
+            <span class="copy-mobile">An immersive 3D portfolio focused on interactive navigation and smooth camera motions.
+Get best experience on desktop.</span>
+          </p>
+          <button class="primary-btn" id="beginBtn" type="button" aria-label="Begin portfolio experience">
+            <span>Start Exploring</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="intro-feature-grid" aria-label="Portfolio highlights">
+            <div class="intro-feature-card">
+              <span class="intro-feature-index">Explore</span>
+              <strong>Explore the Desk</strong>
+              <p>
+                <span class="copy-desktop">Interactive objects, hidden details, and smooth camera transitions across the desk environment.</span>
+                <span class="copy-mobile">Move through the desk setup with interactive objects and guided transitions.</span>
+              </p>
+            </div>
+            <div class="intro-feature-card">
+              <span class="intro-feature-index">Simple View</span>
+              <strong>Resume & Projects</strong>
+              <p>
+                <span class="copy-desktop">A distraction-free resume and project browsing experience for quick review.</span>
+                <span class="copy-mobile">Open a clean, professional view of my resume without any distraction</span>
+              </p>
+            </div>
+            <div class="intro-feature-card">
+              <span class="intro-feature-index">Interactive Extras</span>
+              <strong>Games, Feedback & Motion</strong>
+              <p>
+                <span class="copy-desktop">Mini-games, feedback support, object animations, and experimental portfolio features.</span>
+                <span class="copy-mobile">See the playful side through mini-games, feedback, and motion details.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hud" id="hud">
+      <div class="hud-top">
+        <div class="brand-chip">Syed Roshan Shareq</div>
+        <div class="hint-chip" id="hintChip" aria-hidden="true"></div>
+        <div class="hud-ui-controls">
+          <button class="ui-visibility-toggle" id="uiVisibilityToggle" type="button" aria-pressed="true" aria-label="Toggle interactive object labels">
+            <span class="ui-toggle-light" aria-hidden="true"></span>
+            <span class="ui-toggle-label">UI Visibility</span>
+            <span class="ui-toggle-state">UI</span>
+          </button>
+        </div>
+      </div>
+      <div class="hud-actions">
+        <button class="glass-btn" id="simpleViewBtn" type="button">Simple View</button>
+        <button class="glass-btn" id="restartBtn" type="button">Restart</button>
+      </div>
+    </div>
+
+    <div class="click-layer">
+      <button class="click-target file-target" id="fileTarget" type="button" aria-label="Open portfolio file">
+        <span class="target-label">Open File</span>
+      </button>
+
+      <button class="click-target controller-target" id="controllerTarget" type="button" aria-label="Open retro handheld Tic-Tac-Toe game">
+        <span class="target-label">Open Gamepad</span>
+      </button>
+
+      <button class="click-target pen-target" id="penTarget" type="button" aria-label="Open feedback box">
+        <span class="target-label">Feedback</span>
+      </button>
+
+      <button class="click-target globe-target" id="globeTarget" type="button" aria-label="View globe">
+        <span class="target-label">View Globe</span>
+      </button>
+    </div>
+    <button class="mobile-swipe-arrow" id="mobileSwipeArrow" type="button" aria-label="Swipe right to move toward the retro gamepad">&#8594;</button>
+    <button class="goodday-trigger" id="goodDayArrow" type="button" aria-label="Open have a good day card">&#8595;</button>
+
+    <section class="modal" id="goodDayModal" aria-hidden="true">
+      <div class="goodday-panel">
+        <div class="modal-top">
+          <div class="modal-title">
+            <strong>Final Note</strong>
+            <span>A warm closing message from this portfolio experience.</span>
+          </div>
+          <button class="close-btn-main" id="closeGoodDayBtn" type="button" aria-label="Close have a good day card">&times;</button>
+        </div>
+        <div class="goodday-body">
+          <div class="goodday-emoji" aria-hidden="true">&#10022;</div>
+          <h3 class="goodday-title" tabindex="0">Thanks for Exploring</h3>
+          <p class="goodday-subtitle">This project is still evolving, and I'm continuously improving it as I learn and experiment. Have a great day.</p>
+          <div class="goodday-actions">
+            <button class="glass-btn primary" id="closeGoodDayAction" type="button">Continue</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="feedbackModal" aria-hidden="true">
+      <div class="feedback-panel" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
+        <div class="feedback-topbar">
+          <div class="feedback-title-wrap">
+            <div>
+              <h3 id="feedbackTitle">Feedback</h3>
+              <p>Share your thoughts, suggestions, or anything I can improve.</p>
+            </div>
+          </div>
+          <button class="feedback-close" id="closeFeedbackBtn" type="button" aria-label="Close feedback box">&times;</button>
+        </div>
+
+        <form class="feedback-form" id="feedbackForm" name="portfolio-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+          <input type="hidden" id="feedbackFormName" name="form-name" value="portfolio-feedback" />
+          <p hidden><label>Do not fill this out: <input name="bot-field" /></label></p>
+          <div class="feedback-chat-area" aria-live="polite">
+            <div class="feedback-message assistant-message">
+              <span class="feedback-avatar">SR</span>
+              <div class="feedback-bubble">Hi! Share what you liked, what felt confusing, or what I should improve next.</div>
+            </div>
+          </div>
+
+          <label class="feedback-field-label" for="feedbackName">Name <span>(optional)</span></label>
+          <input class="feedback-input" id="feedbackName" name="name" type="text" maxlength="70" placeholder="Your name" />
+
+          <label class="feedback-field-label" for="feedbackText">Feedback</label>
+          <div class="feedback-composer">
+            <textarea id="feedbackText" name="message" rows="5" maxlength="1400" placeholder="Write your feedback here..." required></textarea>
+            <button class="feedback-send" id="saveFeedbackBtn" type="submit" aria-label="Save feedback">
+              <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+            </button>
+          </div>
+<input type="hidden" id="feedbackPage" name="page" value="" />
+          <input type="hidden" id="feedbackCreatedAt" name="createdAt" value="" />
+          <p class="feedback-status" id="feedbackStatus" role="status"></p>
+          <p id="feedbackFolderHint" hidden aria-hidden="true"></p>
+          <button id="chooseFeedbackFolderBtn" type="button" hidden aria-hidden="true"></button>
+        </form>
+      </div>
+    </section>
+
+    <section class="modal" id="portfolioModal" aria-hidden="true">
+      <div class="portfolio-panel">
+        <div class="modal-top">
+          <div class="modal-title">
+            <strong>Portfolio File</strong>
+
+          </div>
+          <button class="close-btn-main" id="closePortfolioBtn" type="button" aria-label="Close portfolio">&times;</button>
+        </div>
+
+        <div class="book-area">
+          <div class="book-shell">
+            <div class="book-spread" id="bookSpread">
+              <article class="page" id="resumeBookPage">
+                <div class="page-inner">
+                  <div class="page-label">Page 01 / Resume</div>
+
+                  <div class="resume-hero">
+                    <h2>Syed Roshan Shareq</h2>
+                    <p>B.Tech Computer Science student focused on frontend development and interactive web experiences. Experienced in building logic-driven projects, including 3D web interfaces and AI-based applications. Currently exploring game development and learning Blender and Unity. Seeking an opportunity to learn, contribute, and grow as a developer.</p>
+                    <div class="resume-pills">
+                      <span class="resume-pill">B.Tech CSE 2022&ndash;2026</span>
+                      <span class="resume-pill">Hyderabad, India</span>
+                      <span class="resume-pill">Open to opportunities</span>
+                    </div>
+                  </div>
+
+                  <section class="section-card portfolio-contact-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-address-card"></i></span> Contacts</div>
+                    <div class="contact-private-content" aria-hidden="true">
+                      <div class="info-grid">
+                        <div class="info-tile"><strong>Phone</strong><span>+91 â€¢â€¢â€¢â€¢â€¢ â€¢â€¢335</span></div>
+                        <div class="info-tile"><strong>Email</strong><span>syedroshanâ€¢â€¢â€¢â€¢@gmail.com</span></div>
+                        <div class="info-tile"><strong>Location</strong><span>Hyderabad, India</span></div>
+                        <div class="info-tile"><strong>Website</strong><span>www.roshanshareq.online</span></div>
+                      </div>
+                    </div>
+                    <div class="contact-lock-glass">
+                      <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                      <span>Contact details are limited for privacy reasons. You can reach via email:syedroshanshareq@gmail.com</span>
+                    </div>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-bullseye"></i></span> Career Objective</div>
+                    <p>B.Tech Computer Science student focused on frontend development and interactive web experiences. Experienced in building logic-driven projects, including 3D web interfaces and AI-based applications. Currently exploring game development and learning Blender and Unity. Seeking an opportunity to learn, contribute, and grow as a developer.</p>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-wrench"></i></span> Skills</div>
+                    <div class="book-skills bar-skills">
+                      <div class="skill-bar-row" aria-label="Frontend Development skill level 80 percent">
+                        <div class="skill-bar-head">
+                          <span class="skill-name">Frontend Development (HTML, CSS, JavaScript)</span>
+                          <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar"><span style="--level: 80%;"></span></div>
+                      </div>
+                      <div class="skill-bar-row" aria-label="Interactive UI Design and Micro-Interactions skill level 80 percent">
+                        <div class="skill-bar-head">
+                          <span class="skill-name">Interactive UI Design &amp; Micro-Interactions</span>
+                          <span class="skill-level">80%</span>
+                        </div>
+                        <div class="skill-bar"><span style="--level: 80%;"></span></div>
+                      </div>
+                      <div class="skill-bar-row" aria-label="Three.js 3D Web Development skill level 60 percent">
+                        <div class="skill-bar-head">
+                          <span class="skill-name">3D Web Development (Three.js)</span>
+                          <span class="skill-level">60%</span>
+                        </div>
+                        <div class="skill-bar"><span style="--level: 60%;"></span></div>
+                      </div>
+                      <div class="skill-bar-row" aria-label="GSAP Animation and Motion Design skill level 60 percent">
+                        <div class="skill-bar-head">
+                          <span class="skill-name">Animation &amp; Motion Design (GSAP)</span>
+                          <span class="skill-level">60%</span>
+                        </div>
+                        <div class="skill-bar"><span style="--level: 60%;"></span></div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-graduation-cap"></i></span> Education</div>
+                    <div class="timeline-item">
+                      <h4>B.Tech &ndash; Computer Science & Engineering (General) <span class="mini-tag">2022 &ndash; 2026</span></h4>
+                      <p>Malla Reddy College of Engineering (MRCE), Maisammaguda, Hyderabad<br><strong>CGPA:</strong> 7.45</p>
+                    </div>
+                    <div class="timeline-item">
+                      <h4>Intermediate (Class 11&ndash;12) &ndash; MPC <span class="mini-tag">2020 &ndash; 2022</span></h4>
+                      <p>Narayana Junior College, Santoshnagar, Hyderabad<br><strong>CGPA:</strong> 8.5</p>
+                    </div>
+                    <div class="timeline-item">
+                      <h4>Secondary School Certificate &ndash; SSC <span class="mini-tag">Completed 2020</span></h4>
+                      <p>Eminent High School, Santoshnagar, Hyderabad<br><strong>GPA:</strong> 10</p>
+                    </div>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-briefcase"></i></span> Job Preference</div>
+                    <p>Seeking opportunities in <strong>Frontend Development and Interactive Web Experiences</strong>, where I can apply my skills in UI design, 3D web development, and logic-based systems while continuously learning and building impactful projects.</p>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-heart"></i></span> Interests</div>
+                    <ul class="compact-list">
+                      <li>Web Design</li>
+                      <li>3D Modeling</li>
+                      <li>Console Gaming</li>
+                      <li>Video Editing</li>
+                      <li>Game Modding</li>
+                      <li>AI Prompt Engineering</li>
+                    </ul>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-file-signature"></i></span> Declaration</div>
+                    <p>I hereby declare that the above information is true to the best of my knowledge.</p>
+                    <p><strong>Syed Roshan Shareq</strong></p>
+                  </section>
+                </div>
+              </article>
+
+              <article class="page" id="projectsBookPage">
+                <div class="page-inner">
+                  <div class="page-label">Page 02 / Projects</div>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-flask"></i></span> Academic Projects</div>
+                    <div class="project-grid">
+                      <div class="project-card">
+                        <h4>AI-Based Learning Assistant</h4>
+                        <ul>
+                          <li>Developed an AI-powered assistant to help students access personalized study material and doubt-solving support.</li>
+                          <li>Implemented natural language interaction for an improved learning experience.</li>
+                          <li><strong>Tech:</strong> Python, AI Concepts, NLP, Web Interface</li>
+                        </ul>
+                        <div class="project-meta"><span>Python</span><span>AI Concepts</span><span>NLP</span><span>4th Year</span></div>
+                      </div>
+                      <div class="project-card">
+                        <h4>Malware Detection Using Machine Learning</h4>
+                        <ul>
+                          <li>Built a machine learning model to detect and classify malicious files based on behavioral patterns.</li>
+                          <li>Applied classification algorithms to improve detection accuracy.</li>
+                          <li><strong>Tech:</strong> Python, Machine Learning, Classification Algorithms</li>
+                        </ul>
+                        <div class="project-meta"><span>Python</span><span>Machine Learning</span><span>Classification Algorithms</span><span>3rd Year</span></div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-laptop-code"></i></span> Personal Projects</div>
+                    <div class="project-grid">
+                      <div class="project-card">
+                        <h4>Interactive Portfolio Website</h4>
+                        <ul>
+                          <li>Built a responsive portfolio website to showcase resume and projects with clean UI and basic interactions.</li>
+                          <li>Developed a 3D interactive version to enhance the experience.</li>
+                          <li><strong>Tech:</strong> HTML, CSS, JavaScript, Three.js, GSAP</li>
+                        </ul>
+                        <div class="project-meta"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Three.js</span><span>GSAP</span></div>
+                      </div>
+                      <div class="project-card">
+                        <h4>Mini Game with AI Opponent</h4>
+                        <ul>
+                          <li>Built a browser-based Tic-Tac-Toe game with multiple difficulty levels.</li>
+                          <li>Implemented rule-based and minimax-inspired logic for stronger AI in hard mode.</li>
+                          <li>Designed the UI to match the website theme for a consistent experience.</li>
+                          <li><strong>Tech:</strong> JavaScript, Game Logic</li>
+                        </ul>
+                        <div class="project-meta"><span>JavaScript</span><span>Game Logic</span><span>Personal Project</span></div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-certificate"></i></span> Certifications</div>
+                    <ul class="cert-list">
+                      <li><strong>Web Development Certification - The Website Makers</strong><span class="cert-desc">Completed hands-on training in front-end web development.</span></li>
+                      <li><strong>Artificial Intelligence Internship Certificate - InternsHub</strong>
+                      <span class="cert-desc">Gained practical exposure to AI concepts, tools, and real-world applications.</span></li>
+                      <li><strong>AI Tools & ChatGPT Workshop - be10x</strong>
+                      <span class="cert-desc">Completed a hands-on workshop focused on practical usage of AI tools for productivity, data analysis, and coding assistance.</span></li>
+                      <li><strong>Power BI Workshop - OfficeMaster</strong>
+                      <span class="cert-desc">Learned fundamentals of building interactive dashboards and working with data visualization using Power BI.</span></li>
+                      <li><strong>Responsive Web Design Certification - freeCodeCamp</strong>
+                      <span class="cert-desc">Learned modern HTML, CSS, responsive layouts, and accessibility focused design principles.</span></li>
+                    </ul>
+                  </section>
+
+                  <section class="section-card">
+                    <div class="section-title"><span class="icon"><i class="fa-solid fa-star"></i></span> Why this 3D Portfolio?</div>
+                    <ul>
+                      <li>Built to move beyond static resumes by creating an interactive way to explore projects and skills.</li>
+                      <li>Inspired by PC gaming interfaces, focusing on interaction, exploration, and user engagement.</li>
+                      <li>Includes both an interactive mode and a simple view for accessibility and ease of use.</li>
+                      <li>Plans to expand into a richer and more dynamic experience.</li>
+                    </ul>
+                  </section>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="mobile-page-nav">
+            <button class="nav-btn" id="prevPageBtn" type="button" aria-label="Previous page">&#8249;</button>
+            <div class="page-dots" id="pageDots" aria-label="Page indicators">
+              <button class="page-dot active" data-page="0" type="button" aria-label="Go to resume page"></button>
+              <button class="page-dot" data-page="1" type="button" aria-label="Go to projects page"></button>
+            </div>
+            <div class="page-counter" id="pageCounter">1 / 2</div>
+            <button class="nav-btn" id="nextPageBtn" type="button" aria-label="Next page">&#8250;</button>
+          </div>
+          <div class="desktop-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="simpleViewModal" aria-hidden="true">
+      <div class="simple-panel">
+        <div class="modal-top">
+          <div class="modal-title">
+            <strong>Simple View</strong>
+          </div>
+          <button class="close-btn-main" id="closeSimpleViewBtn" type="button" aria-label="Close simple view">&times;</button>
+        </div>
+        <iframe class="simple-frame" id="simpleFrame" title="Simple resume view"></iframe>
+      </div>
+    </section>
+
+    <div class="game-modal" id="gameModal">
+      <div class="game-box">
+        <div class="close-btn" onclick="closeGame()">&times;</div>
+        <div class="game-title">Tic-Tac-Toe</div>
+        <div class="game-hud">
+          <span>You: X</span>
+          <select id="difficulty" class="select">
+            <option value="easy">Easy</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="board" id="board"></div>
+        <div class="bottom-controls">
+          <button class="btn" onclick="resetGame()">Restart</button>
+        </div>
+        <div id="winPopup"></div>
+      </div>
+    </div>
+
+    <div class="transition-shade" id="transitionShade"></div>
+    <div class="floating-toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="mobile-warning" aria-hidden="true"></div>
+  </div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="./assets/js/app.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7939e04a4baf43c8b86a560f74aac60e","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4a4b658285de48d48c272804f9894927","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

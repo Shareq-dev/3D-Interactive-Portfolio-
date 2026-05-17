@@ -1,0 +1,9 @@
+{
+  "name": "Syed Roshan Shareq Portfolio",
+  "short_name": "SRS Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030812",
+  "theme_color": "#030812",
+  "description": "Interactive 3D portfolio by Syed Roshan Shareq."
+}
