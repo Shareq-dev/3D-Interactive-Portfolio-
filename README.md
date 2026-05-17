@@ -47,23 +47,6 @@ While building this project, I focused on:
 
 ---
 
-## 📁 Project Structure
-
-📦 3D-Interactive-Portfolio
-├── 📄 index.html
-├── 📁 assets
-│ ├── 📁 css
-│ │ └── 📄 main.css
-│ └── 📁 js
-│ └── 📄 app.js
-├── 📄 favicon.ico
-├── 📄 robots.txt
-├── 📄 sitemap.xml
-├── 📄 site.webmanifest
-└── 📄 README.md
-
----
-
 ## 🎯 Purpose
 
 The goal of this project is to create a portfolio that feels like an experience rather than just a website — something users can explore instead of simply scrolling through.
