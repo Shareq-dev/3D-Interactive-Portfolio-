@@ -76,6 +76,10 @@ The goal of this project is to create a portfolio that feels like an experience 
 
 ---
 
+## 🎥 Demo Video
+
+https://www.linkedin.com/posts/syed-roshan-shareq-4408a7336_webdevelopment-frontenddeveloper-threejs-ugcPost-7461389051452051456-6yar?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFR-W7ABaAOKwf8LrLosy3Gt4QKELluifIo
+
 ## 🔗 Live Demo
 
 👉 https://roshanshareq.online
