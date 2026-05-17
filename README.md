@@ -49,16 +49,18 @@ While building this project, I focused on:
 
 ## 📁 Project Structure
 
-index.html
-assets/
-  css/
-    main.css
-  js/
-    app.js
-favicon.ico
-robots.txt
-sitemap.xml
-site.webmanifest
+📦 3D-Interactive-Portfolio
+├── 📄 index.html
+├── 📁 assets
+│ ├── 📁 css
+│ │ └── 📄 main.css
+│ └── 📁 js
+│ └── 📄 app.js
+├── 📄 favicon.ico
+├── 📄 robots.txt
+├── 📄 sitemap.xml
+├── 📄 site.webmanifest
+└── 📄 README.md
 
 ---
 
